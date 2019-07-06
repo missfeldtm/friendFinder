@@ -7,29 +7,29 @@
 
   <title>FriendFinder</title>
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-  </script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
   <!-- Font Awesome Glyphicons -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <link rel="stylesheet" href="main.css">
 
 
 </head>
 
 <body>
-  <div class="container">
-    <div class="jumbotron">
+  <div class="container" id="bg">
+    <div class="jumbo">
       <div class="Mntitle">
-        <h1>Meet Your Forever</h1>
+        <h1>Take The Survey</h1>
       </div>
       <hr />
       <h2 class="Mntitle">
-        Then find the one with the greatest compatibility!
+        Find Some Friends!
       </h2>
     </div>
+
 
     <h2>Survey Questions</h2>
     <hr />
@@ -41,14 +41,10 @@
     <hr />
 
 
-
-
-
-
     <h3>Question 1</h3>
     <h4>I enjoy meeting new people.</h4>
 
-    
+
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="q1" id="inlineRadio1" value="1">
       <label class="form-check-label" for="inlineRadio1">1 (Least Accurate)</label>
@@ -70,7 +66,7 @@
       <label class="form-check-label" for="inlineRadio1">5 (Most Accurate)</label>
     </div>
 
-   
+
 
     <h3>Question 2</h3>
     <h4>I'm a Competitive Person</h4>
@@ -290,8 +286,8 @@
     <footer class="footer text-center">
       <div class="container">
         <p>
-          <a href="#">About Dave Cox</a> |
-          <a href="https://github.com/Dcoxmen/friend-finder">GitHub Repo</a>
+          <a href="#">About This App</a> |
+          <a href="https://github.com/missfeldtm/friendFinder">GitHub Repo</a>
           <br />
         </p>
       </div>
@@ -320,6 +316,12 @@
       </div>
     </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+  </script>
   <script type="text/javascript">
     $("#submit").on("click", function () {
       function validateForm() {
@@ -337,24 +339,27 @@
           name: $("#name").val(),
           photo: $("#photo").val(),
           scores: [
-            $("#q1").val(),
-            $("#q2").val(),
-            $("#q3").val(),
-            $("#q4").val(),
-            $("#q5").val(),
-            $("#q6").val(),
-            $("#q7").val(),
-            $("#q8").val(),
-            $("#q9").val(),
-            $("#q10").val()
+            $("input[name='q1']:checked").val(),
+            $("input[name='q2']:checked").val(),
+            $("input[name='q3']:checked").val(),
+            $("input[name='q4']:checked").val(),
+            $("input[name='q5']:checked").val(),
+            $("input[name='q6']:checked").val(),
+            $("input[name='q7']:checked").val(),
+            $("input[name='q8']:checked").val(),
+            $("input[name='q9']:checked").val(),
+            $("input[name='q10']:checked").val()
           ]
         };
+        console.log(userData);
+        
         var currentURL = window.location.origin;
+
         $.post(currentURL + "/api/friends", userData, function (data) {
           $("#matchName").text(data.name);
           $("#matchImg").attr("src", data.photo);
           $("#resultsModal").modal("toggle");
-        });
+        }); 
       } else {
         alert("Please fill out all fields before submitting!");
       }

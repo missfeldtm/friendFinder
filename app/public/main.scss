@@ -10,3 +10,34 @@ body {
 
   
 }
+.jumbotron {
+  background: #929292;
+}
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.body {
+  background: #e4ebf1;
+}
+hr {
+  border-color: inherit;
+  margin: 1em 0;
+}
+.Mntitle {
+  color: white;
+}
+#resultsModal img {
+  overflow: hidden;
+  width: 100%;
+}
+
+.modal-title{
+  font-weight: 500;
+  text-align: left;
+}
+
+.modal-header{
+  display:block;
+}
